@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sichuang.couponPO.mappers.CouponFreezeRecordMapper">
+  <resultMap id="BaseResultMap" type="com.sichuang.coupon.po.CouponFreezeRecord">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="biz_serial_number" jdbcType="VARCHAR" property="bizSerialNumber" />
+    <result column="freeze_status" jdbcType="INTEGER" property="freezeStatus" />
+    <result column="coupon_id" jdbcType="BIGINT" property="couponId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="loan_no" jdbcType="VARCHAR" property="loanNo" />
+    <result column="product_no" jdbcType="INTEGER" property="productNo" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, biz_serial_number, freeze_status, coupon_id, user_id, loan_no, product_no, create_time, 
+    memo, update_time, version
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from coupon_freeze_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from coupon_freeze_record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.sichuang.coupon.po.CouponFreezeRecord">
+    insert into coupon_freeze_record (id, biz_serial_number, freeze_status, 
+      coupon_id, user_id, loan_no, 
+      product_no, create_time, memo, 
+      update_time, version)
+    values (#{id,jdbcType=BIGINT}, #{bizSerialNumber,jdbcType=VARCHAR}, #{freezeStatus,jdbcType=INTEGER}, 
+      #{couponId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{loanNo,jdbcType=VARCHAR}, 
+      #{productNo,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sichuang.coupon.po.CouponFreezeRecord">
+    insert into coupon_freeze_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="bizSerialNumber != null">
+        biz_serial_number,
+      </if>
+      <if test="freezeStatus != null">
+        freeze_status,
+      </if>
+      <if test="couponId != null">
+        coupon_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="loanNo != null">
+        loan_no,
+      </if>
+      <if test="productNo != null">
+        product_no,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="bizSerialNumber != null">
+        #{bizSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="freezeStatus != null">
+        #{freezeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="couponId != null">
+        #{couponId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="loanNo != null">
+        #{loanNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productNo != null">
+        #{productNo,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sichuang.coupon.po.CouponFreezeRecord">
+    update coupon_freeze_record
+    <set>
+      <if test="bizSerialNumber != null">
+        biz_serial_number = #{bizSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="freezeStatus != null">
+        freeze_status = #{freezeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="couponId != null">
+        coupon_id = #{couponId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="loanNo != null">
+        loan_no = #{loanNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productNo != null">
+        product_no = #{productNo,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sichuang.coupon.po.CouponFreezeRecord">
+    update coupon_freeze_record
+    set biz_serial_number = #{bizSerialNumber,jdbcType=VARCHAR},
+      freeze_status = #{freezeStatus,jdbcType=INTEGER},
+      coupon_id = #{couponId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      loan_no = #{loanNo,jdbcType=VARCHAR},
+      product_no = #{productNo,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      memo = #{memo,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

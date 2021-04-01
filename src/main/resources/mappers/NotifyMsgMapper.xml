@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sichuang.couponPO.mappers.NotifyMsgMapper">
+  <resultMap id="BaseResultMap" type="com.sichuang.coupon.po.NotifyMsg">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="batch_id" jdbcType="BIGINT" property="batchId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="notify_day" jdbcType="VARCHAR" property="notifyDay" />
+    <result column="notify_type" jdbcType="INTEGER" property="notifyType" />
+    <result column="notify_time" jdbcType="TIMESTAMP" property="notifyTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, batch_id, user_id, notify_day, notify_type, notify_time, status, comment, create_time, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from notify_msg
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from notify_msg
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sichuang.coupon.po.NotifyMsg">
+    insert into notify_msg (id, batch_id, user_id, 
+      notify_day, notify_type, notify_time, 
+      status, comment, create_time, 
+      update_time)
+    values (#{id,jdbcType=INTEGER}, #{batchId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
+      #{notifyDay,jdbcType=VARCHAR}, #{notifyType,jdbcType=INTEGER}, #{notifyTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{comment,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sichuang.coupon.po.NotifyMsg">
+    insert into notify_msg
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="batchId != null">
+        batch_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="notifyDay != null">
+        notify_day,
+      </if>
+      <if test="notifyType != null">
+        notify_type,
+      </if>
+      <if test="notifyTime != null">
+        notify_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="batchId != null">
+        #{batchId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="notifyDay != null">
+        #{notifyDay,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyType != null">
+        #{notifyType,jdbcType=INTEGER},
+      </if>
+      <if test="notifyTime != null">
+        #{notifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sichuang.coupon.po.NotifyMsg">
+    update notify_msg
+    <set>
+      <if test="batchId != null">
+        batch_id = #{batchId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="notifyDay != null">
+        notify_day = #{notifyDay,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyType != null">
+        notify_type = #{notifyType,jdbcType=INTEGER},
+      </if>
+      <if test="notifyTime != null">
+        notify_time = #{notifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="comment != null">
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sichuang.coupon.po.NotifyMsg">
+    update notify_msg
+    set batch_id = #{batchId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      notify_day = #{notifyDay,jdbcType=VARCHAR},
+      notify_type = #{notifyType,jdbcType=INTEGER},
+      notify_time = #{notifyTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      comment = #{comment,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

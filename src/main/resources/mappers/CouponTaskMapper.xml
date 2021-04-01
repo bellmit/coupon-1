@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sichuang.couponPO.mappers.CouponTaskMapper">
+  <resultMap id="BaseResultMap" type="com.sichuang.coupon.po.CouponTask">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="task_id" jdbcType="BIGINT" property="taskId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="batch_id" jdbcType="BIGINT" property="batchId" />
+    <result column="handler" jdbcType="VARCHAR" property="handler" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="retry_count" jdbcType="INTEGER" property="retryCount" />
+    <result column="max_retry_count" jdbcType="INTEGER" property="maxRetryCount" />
+    <result column="run_time" jdbcType="TIMESTAMP" property="runTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="params" jdbcType="VARCHAR" property="params" />
+    <result column="retry_reasion" jdbcType="VARCHAR" property="retryReasion" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, task_id, user_id, batch_id, handler, status, retry_count, max_retry_count, run_time, 
+    create_time, update_time, version, retry_reasion
+  </sql>
+
+  <select id="selectByShardingPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from notify_msg
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from coupon_task
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.sichuang.coupon.po.CouponTask">
+    insert into coupon_task (id, task_id, user_id, 
+      batch_id, handler, status, 
+      retry_count, max_retry_count, run_time, 
+      create_time, update_time, version, 
+      retry_reasion, params)
+    values (#{id,jdbcType=BIGINT}, #{taskId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
+      #{batchId,jdbcType=BIGINT}, #{handler,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{retryCount,jdbcType=INTEGER}, #{maxRetryCount,jdbcType=INTEGER}, #{runTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}, 
+      #{retryReasion,jdbcType=VARCHAR}, #{params,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sichuang.coupon.po.CouponTask">
+    insert into coupon_task
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="taskId != null">
+        task_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="batchId != null">
+        batch_id,
+      </if>
+      <if test="handler != null">
+        handler,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="retryCount != null">
+        retry_count,
+      </if>
+      <if test="maxRetryCount != null">
+        max_retry_count,
+      </if>
+      <if test="runTime != null">
+        run_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="retryReasion != null">
+        retry_reasion,
+      </if>
+      <if test="params != null">
+        params,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="taskId != null">
+        #{taskId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="batchId != null">
+        #{batchId,jdbcType=BIGINT},
+      </if>
+      <if test="handler != null">
+        #{handler,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="retryCount != null">
+        #{retryCount,jdbcType=INTEGER},
+      </if>
+      <if test="maxRetryCount != null">
+        #{maxRetryCount,jdbcType=INTEGER},
+      </if>
+      <if test="runTime != null">
+        #{runTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="retryReasion != null">
+        #{retryReasion,jdbcType=VARCHAR},
+      </if>
+      <if test="params != null">
+        #{params,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sichuang.coupon.po.CouponTask">
+    update coupon_task
+    <set>
+      <if test="taskId != null">
+        task_id = #{taskId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="batchId != null">
+        batch_id = #{batchId,jdbcType=BIGINT},
+      </if>
+      <if test="handler != null">
+        handler = #{handler,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="retryCount != null">
+        retry_count = #{retryCount,jdbcType=INTEGER},
+      </if>
+      <if test="maxRetryCount != null">
+        max_retry_count = #{maxRetryCount,jdbcType=INTEGER},
+      </if>
+      <if test="runTime != null">
+        run_time = #{runTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="retryReasion != null">
+        retry_reasion = #{retryReasion,jdbcType=VARCHAR},
+      </if>
+      <if test="params != null">
+        params = #{params,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sichuang.coupon.po.CouponTask">
+    update coupon_task
+    set task_id = #{taskId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      batch_id = #{batchId,jdbcType=BIGINT},
+      handler = #{handler,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      retry_count = #{retryCount,jdbcType=INTEGER},
+      max_retry_count = #{maxRetryCount,jdbcType=INTEGER},
+      run_time = #{runTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER},
+      retry_reasion = #{retryReasion,jdbcType=VARCHAR},
+      params = #{params,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sichuang.coupon.po.CouponTask">
+    update coupon_task
+    set task_id = #{taskId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      batch_id = #{batchId,jdbcType=BIGINT},
+      handler = #{handler,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      retry_count = #{retryCount,jdbcType=INTEGER},
+      max_retry_count = #{maxRetryCount,jdbcType=INTEGER},
+      run_time = #{runTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER},
+      retry_reasion = #{retryReasion,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="queryCouponsBySharding" resultMap="BaseResultMap">
+    SELECT
+    *
+    FROM coupon_task
+    WHERE status = 0 and mod(id,#{totalNumber,jdbcType=BIGINT})=#{index,jdbcType=BIGINT} limit #{limit,jdbcType=BIGINT}
+  </select>
+</mapper>

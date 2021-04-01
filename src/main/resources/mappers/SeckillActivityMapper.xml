@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiuzhang.seckillservice.dao.mappers.SeckillActivityMapper">
+  <resultMap id="BaseResultMap" type="com.jiuzhang.seckillservice.dao.po.SeckillActivity">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="good_id" jdbcType="BIGINT" property="goodId" />
+    <result column="seckill_price" jdbcType="DECIMAL" property="seckillPrice" />
+    <result column="seckill_number" jdbcType="BIGINT" property="seckillNumber" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, good_id, seckill_price, seckill_number
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from seckill_activity
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from seckill_activity
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jiuzhang.seckillservice.dao.po.SeckillActivity">
+    insert into seckill_activity (id, name, good_id, 
+      seckill_price, seckill_number)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{goodId,jdbcType=BIGINT}, 
+      #{seckillPrice,jdbcType=DECIMAL}, #{seckillNumber,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jiuzhang.seckillservice.dao.po.SeckillActivity">
+    insert into seckill_activity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="goodId != null">
+        good_id,
+      </if>
+      <if test="seckillPrice != null">
+        seckill_price,
+      </if>
+      <if test="seckillNumber != null">
+        seckill_number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="goodId != null">
+        #{goodId,jdbcType=BIGINT},
+      </if>
+      <if test="seckillPrice != null">
+        #{seckillPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="seckillNumber != null">
+        #{seckillNumber,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jiuzhang.seckillservice.dao.po.SeckillActivity">
+    update seckill_activity
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="goodId != null">
+        good_id = #{goodId,jdbcType=BIGINT},
+      </if>
+      <if test="seckillPrice != null">
+        seckill_price = #{seckillPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="seckillNumber != null">
+        seckill_number = #{seckillNumber,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jiuzhang.seckillservice.dao.po.SeckillActivity">
+    update seckill_activity
+    set name = #{name,jdbcType=VARCHAR},
+      good_id = #{goodId,jdbcType=BIGINT},
+      seckill_price = #{seckillPrice,jdbcType=DECIMAL},
+      seckill_number = #{seckillNumber,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
