@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sichuang.couponPO.mappers.CouponTaskMapper">
-  <resultMap id="BaseResultMap" type="com.sichuang.coupon.po.CouponTask">
+  <resultMap id="BaseResultMap" type="com.coupon.po.CouponTask">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="task_id" jdbcType="BIGINT" property="taskId" />
     <result column="user_id" jdbcType="BIGINT" property="userId" />
@@ -34,7 +34,7 @@
     delete from coupon_task
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.sichuang.coupon.po.CouponTask">
+  <insert id="insert" parameterType="com.coupon.po.CouponTask">
     insert into coupon_task (id, task_id, user_id, 
       batch_id, handler, status, 
       retry_count, max_retry_count, run_time, 
@@ -46,7 +46,7 @@
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}, 
       #{retryReasion,jdbcType=VARCHAR}, #{params,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.sichuang.coupon.po.CouponTask">
+  <insert id="insertSelective" parameterType="com.coupon.po.CouponTask">
     insert into coupon_task
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -137,7 +137,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.sichuang.coupon.po.CouponTask">
+  <update id="updateByPrimaryKeySelective" parameterType="com.coupon.po.CouponTask">
     update coupon_task
     <set>
       <if test="taskId != null">
@@ -182,7 +182,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sichuang.coupon.po.CouponTask">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.coupon.po.CouponTask">
     update coupon_task
     set task_id = #{taskId,jdbcType=BIGINT},
       user_id = #{userId,jdbcType=BIGINT},
@@ -199,7 +199,7 @@
       params = #{params,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.sichuang.coupon.po.CouponTask">
+  <update id="updateByPrimaryKey" parameterType="com.coupon.po.CouponTask">
     update coupon_task
     set task_id = #{taskId,jdbcType=BIGINT},
       user_id = #{userId,jdbcType=BIGINT},

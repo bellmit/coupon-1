@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sichuang.couponPO.mappers.CouponFreezeRecordMapper">
-  <resultMap id="BaseResultMap" type="com.sichuang.coupon.po.CouponFreezeRecord">
+  <resultMap id="BaseResultMap" type="com.coupon.po.CouponFreezeRecord">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="biz_serial_number" jdbcType="VARCHAR" property="bizSerialNumber" />
     <result column="freeze_status" jdbcType="INTEGER" property="freezeStatus" />
@@ -28,7 +28,7 @@
     delete from coupon_freeze_record
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.sichuang.coupon.po.CouponFreezeRecord">
+  <insert id="insert" parameterType="com.coupon.po.CouponFreezeRecord">
     insert into coupon_freeze_record (id, biz_serial_number, freeze_status, 
       coupon_id, user_id, loan_no, 
       product_no, create_time, memo, 
@@ -38,7 +38,7 @@
       #{productNo,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.sichuang.coupon.po.CouponFreezeRecord">
+  <insert id="insertSelective" parameterType="com.coupon.po.CouponFreezeRecord">
     insert into coupon_freeze_record
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -111,7 +111,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.sichuang.coupon.po.CouponFreezeRecord">
+  <update id="updateByPrimaryKeySelective" parameterType="com.coupon.po.CouponFreezeRecord">
     update coupon_freeze_record
     <set>
       <if test="bizSerialNumber != null">
@@ -147,7 +147,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.sichuang.coupon.po.CouponFreezeRecord">
+  <update id="updateByPrimaryKey" parameterType="com.coupon.po.CouponFreezeRecord">
     update coupon_freeze_record
     set biz_serial_number = #{bizSerialNumber,jdbcType=VARCHAR},
       freeze_status = #{freezeStatus,jdbcType=INTEGER},
