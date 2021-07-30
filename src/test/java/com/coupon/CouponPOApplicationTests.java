@@ -1,4 +1,4 @@
-package com.coupon.coupon;
+package com.coupon;
 
 import com.coupon.mappers.CouponTaskMapper;
 import com.coupon.mappers.NotifyMsgMapper;

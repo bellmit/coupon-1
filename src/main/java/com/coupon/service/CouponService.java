@@ -1,33 +1,46 @@
 package com.coupon.service;
 
-import com.coupon.requests.FreezeCouponRequest;
+import com.coupon.db.dao.CouponDao;
+import com.coupon.db.po.Coupon;
+import com.coupon.requests.CreateCouponRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 public class CouponService {
     private static Logger logger = LoggerFactory.getLogger(CouponService.class);
+
     @Autowired
-    private CouponFreezeService couponFreezeService;
-    public void freezeCoupon(FreezeCouponRequest freezeCouponRequest) throws  Exception{
-     try{
-         /**
-          * 1.校验
-          */
+    private CouponDao couponDao;
 
-         /**
-          * 2.冻结
-          *   插入冻结记录
-          *   修改券的状态为冻结
-          */
-         couponFreezeService.freezeCoupon(freezeCouponRequest);
-
-     }catch (Throwable throwable){
-        logger.error(throwable.toString());
-     }
+    /**
+     * 创建优惠券
+     *
+     * @param req
+     */
+    public void createCoupon(CreateCouponRequest req) {
+        Coupon coupon = new Coupon();
+        coupon.setCouponId(req.getCouponId());
+        coupon.setCouponName(req.getCouponName());
+        coupon.setUserId(req.getUserId());
+        coupon.setStatus(1);
+        coupon.setReceivedTime(new Date());
+        couponDao.insert(coupon);
     }
 
+    /**
+     * 查询优惠券
+     *
+     * @param couponId
+     * @return
+     */
+    public Coupon queryCoupon(long couponId) {
+        Coupon coupon = couponDao.queryById(couponId);
+        return coupon;
+    }
 
 }

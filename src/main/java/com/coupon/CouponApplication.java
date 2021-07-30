@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan({"com.coupon.*"})
-@MapperScan("com.sichuang.coupon.mappers")
+@MapperScan("com.coupon.db.mappers")
 public class CouponApplication {
 
     public static void main(String[] args) {
