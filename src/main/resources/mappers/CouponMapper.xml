@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.coupon.db.mappers.CouponMapper">
+  <resultMap id="BaseResultMap" type="com.coupon.db.po.Coupon">
+    <id column="coupon_id" jdbcType="BIGINT" property="couponId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="coupon_name" jdbcType="VARCHAR" property="couponName" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="received_time" jdbcType="TIMESTAMP" property="receivedTime" />
+    <result column="validate_time" jdbcType="TIMESTAMP" property="validateTime" />
+    <result column="used_time" jdbcType="TIMESTAMP" property="usedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    coupon_id, user_id, coupon_name, status, order_id, received_time, validate_time, 
+    used_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from coupon
+    where coupon_id = #{couponId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from coupon
+    where coupon_id = #{couponId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.coupon.db.po.Coupon">
+    insert into coupon (coupon_id, user_id, coupon_name, 
+      status, order_id, received_time, 
+      validate_time, used_time)
+    values (#{couponId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{couponName,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{receivedTime,jdbcType=TIMESTAMP}, 
+      #{validateTime,jdbcType=TIMESTAMP}, #{usedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coupon.db.po.Coupon">
+    insert into coupon
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="couponId != null">
+        coupon_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="couponName != null">
+        coupon_name,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="receivedTime != null">
+        received_time,
+      </if>
+      <if test="validateTime != null">
+        validate_time,
+      </if>
+      <if test="usedTime != null">
+        used_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="couponId != null">
+        #{couponId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="couponName != null">
+        #{couponName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="receivedTime != null">
+        #{receivedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validateTime != null">
+        #{validateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usedTime != null">
+        #{usedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coupon.db.po.Coupon">
+    update coupon
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="couponName != null">
+        coupon_name = #{couponName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="receivedTime != null">
+        received_time = #{receivedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validateTime != null">
+        validate_time = #{validateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usedTime != null">
+        used_time = #{usedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where coupon_id = #{couponId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coupon.db.po.Coupon">
+    update coupon
+    set user_id = #{userId,jdbcType=BIGINT},
+      coupon_name = #{couponName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      received_time = #{receivedTime,jdbcType=TIMESTAMP},
+      validate_time = #{validateTime,jdbcType=TIMESTAMP},
+      used_time = #{usedTime,jdbcType=TIMESTAMP}
+    where coupon_id = #{couponId,jdbcType=BIGINT}
+  </update>
+</mapper>
